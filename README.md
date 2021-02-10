@@ -1,13 +1,17 @@
 # vhstatus
-Valheim dedicated server status page shows online and offline players for a dedicated Valheim server.
-Required access to the server logfile and Node.js
+vhstatus provides a status page for a dedicated [Valheim](http://valheimgame.com) server. 
+It shows a list of online and offline players. To run it you'll need [Node.js](https://nodejs.org/en/) and access to the server log file.
 
-## Install and run
+## To install and run
 
-> npm install 
+```
+npm install 
+```
 
-Edit config.json
+Edit `config.json` with your server name, path to server log and optional update frequency and port.
 
-> npm run start
+```
+npm run start
+```
 
-Access the status page on, e.g., http://localhost:3000
+Now access the status page on, e.g., http://localhost:3000
