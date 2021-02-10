@@ -1,0 +1,6 @@
+{
+  "log": "/home/vhserver/log/console/vhserver-console.log",
+  "freq": 5000,
+  "serverName": "Valheim Server",
+  "port": 3000
+}

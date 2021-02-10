@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap" rel="stylesheet">
+    <title>Valheim server status</title>
+	<style>
+		html {
+			background-color: rgb(13, 29, 40);
+			color: white;
+			font-family: "Alegreya Sans", sans-serif;
+		}
+	</style>
+  </head>
+  <body>
+	  <h1>Valheim players in <span id="server"></span></h1>
+	<h2>Online (<span id="online-count"></span>)</h2>
+	<ul id="online"></ul>
+	<h2>Offline<span id="offline-count"></span></h2>
+	<ul id="offline"></ul>
+    <script>
+		let online = document.querySelector("#online");
+		let onlineCount = document.querySelector("#online-count");
+		let offline = document.querySelector("#offline");
+		let offlineCount = document.querySelector("#offline-count");
+		let server = document.querySelector("#server");
+		
+      (function() {
+        window.onload = function() {
+          const socket = new WebSocket('ws://'+window.location.host);
+
+          // Listen for messages
+          socket.addEventListener('message', function(event) {
+			  online.innerHTML = "";
+			  offline.innerHTML = "";
+			  let data = JSON.parse(event.data);
+			  let users = data.users;
+			  for (let user in users) {
+				  
+				  let li = document.createElement("li");
+				  if (users[user].disconnected) {
+					  li.innerHTML = `<strong><em>${users[user].user}</em></strong>
+					  <ul>
+					  	<li>Connected: ${new Date(users[user].connected)})</li>
+					  	<li>Disconnected: ${new Date(users[user].disconnected)}</li>
+					  </ul>
+					  `
+					 offline.append(li);
+				  } else {
+					  li.innerHTML = `<strong><em>${users[user].user}</em></strong>
+					  <ul>
+					  	<li>Connected: ${new Date(users[user].connected)})</li>
+					  </ul>
+					  `
+				  	  online.append(li);
+				  }
+			  }
+			  onlineCount.innerHTML = document.querySelectorAll("#online > li").length;
+			  server.innerHTML = data.serverName;
+          });
+        };
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "Valheim server status",
+  "version": "0.0.1",
+  "description": "Show online Valheim players",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Clemens Nylandsted Klokmose",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ws": "^7.4.3"
+  }
+}
