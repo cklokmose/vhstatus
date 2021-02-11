@@ -38,7 +38,7 @@
 			  let data = JSON.parse(event.data);
 			  let users = data.users;
 			  for (let user in users) {
-				  
+				  if (!users[user].user) continue; //User that didn't login properly
 				  let li = document.createElement("li");
 				  if (users[user].disconnected) {
 					  li.innerHTML = `<strong><em>${users[user].user}</em></strong>
