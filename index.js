@@ -18,7 +18,7 @@ wss.on('connection', socket => {
 });
 
 function sendUsers() {
-	fs.readFile("/home/vhserver/log/console/vhserver-console.log", "utf8", (err, data) => {
+	fs.readFile(config.log, "utf8", (err, data) => {
 
 		let lines = data.split("\n");
 		
