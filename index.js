@@ -38,6 +38,7 @@ function sendUsers() {
 				}
 				if (disconnected) {
 					let id = disconnected[2];
+					if (!users[id]) continue;
 					let user = users[id];
 					let time = new Date(line.match(/\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}:\d{2}/));
 					user.disconnected = time;
@@ -45,6 +46,9 @@ function sendUsers() {
 				if (user) {
 					if (lastUser) {
 						users[lastUser].user = user[2];
+						for (let u in users) { // Clean up users showing up multiple times in the list
+							if (users[u].user == user[2] && u !== lastUser) delete users[u];
+						}
 						lastUser = undefined;
 					}
 				}
