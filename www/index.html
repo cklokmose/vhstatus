@@ -15,18 +15,19 @@
 	</style>
   </head>
   <body>
-	  <h1>Valheim players in <span id="server"></span></h1>
+	<h1>Valheim players in <span id="server"></span></h1>
 	<h2>Online (<span id="online-count"></span>)</h2>
 	<ul id="online"></ul>
 	<h2>Offline<span id="offline-count"></span></h2>
 	<ul id="offline"></ul>
+
     <script>
 		let online = document.querySelector("#online");
 		let onlineCount = document.querySelector("#online-count");
 		let offline = document.querySelector("#offline");
 		let offlineCount = document.querySelector("#offline-count");
 		let server = document.querySelector("#server");
-		
+
       (function() {
         window.onload = function() {
           const socket = new WebSocket('ws://'+window.location.host);
