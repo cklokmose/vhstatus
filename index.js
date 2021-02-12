@@ -28,7 +28,7 @@ function sendUsers() {
 			let lastUser;
 			for (let line of lines) {
 				let handshake = line.match(/(handshake from client )(\d+)/);
-				let user = line.match(/(Got character ZDOID from )(\w+)/);
+				let user = line.match(/(Got character ZDOID from )([\w ]+)(\s:)/);
 				let disconnected = line.match(/(Closing socket )(\d\d+)/)
 				if (handshake) {
 					let id = handshake[2];
